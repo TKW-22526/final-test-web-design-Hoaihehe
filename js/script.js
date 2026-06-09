@@ -525,17 +525,17 @@ function initMessengerWidget() {
 
     if (isMobile) {
         // Nếu là điện thoại: Gọi giao thức Deep-link để ép hệ điều hành mở THẲNG app Messenger, bỏ qua trình duyệt web lỗi
-        messengerLink.href = `fb-messenger://user/le.huu.hoai.2025`;
+        messengerLink.href = `fb-messenger://user/@61590634503852`;
     } else {
         // Nếu là máy tính (PC): Sử dụng link m.me gọn nhẹ, tối ưu tốc độ load chat trên trình duyệt máy tính
-        messengerLink.href = `https://m.me/le.huu.hoai.2025`;
+        messengerLink.href = `https://m.me/61590634503852`;
     }
 
     // Dự phòng (Fallback): Nếu deep-link trên một số dòng máy cũ bị chặn, tự động chuyển về link m.me sau 1 giây
     messengerLink.addEventListener('click', (e) => {
         if (isMobile) {
             setTimeout(() => {
-                window.location.href = `https://m.me/le.huu.hoai.2025`;
+                window.location.href = `https://m.me/61590634503852`;
             }, 1000);
         }
     });
