@@ -455,7 +455,6 @@ if (searchInput && searchDropdown) {
             return;
         }
 
-        // Lọc trực tiếp từ mảng tổng productList
         const filteredProducts = productList.filter(product => 
             product.name.toLowerCase().includes(keyword)
         );
@@ -472,14 +471,24 @@ if (searchInput && searchDropdown) {
             return;
         }
 
+        // Kiểm tra xem vị trí file hiện tại có nằm trong thư mục /html/ hay không để sửa link ảnh/điều hướng cho đúng
+        const isSubDir = window.location.pathname.includes('/html/');
+        const pathPrefix = isSubDir ? '' : 'html/';
+        const imgPrefix = isSubDir ? '' : 'html/';
+
         results.forEach(product => {
             const itemLink = document.createElement('a');
-            // Cập nhật đường dẫn chuẩn hướng về trang chi-tiet.html kèm id
-            itemLink.href = `chi-tiet.html?id=${product.id}`;
+            itemLink.href = `${pathPrefix}chi-tiet.html?id=${product.id}`;
             itemLink.className = 'search-item';
             
+            // Xử lý logic sửa lỗi ảnh cục bộ hệ thống khi đứng ở trang chủ
+            let displayImg = product.image;
+            if (!isSubDir && product.image.startsWith('../')) {
+                displayImg = product.image.replace('../', '');
+            }
+
             itemLink.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/40'">
+                <img src="${displayImg}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/40'">
                 <div class="info">
                     <span class="name">${product.name}</span>
                     <span class="price">${product.price.toLocaleString('vi-VN')}đ</span>
@@ -489,7 +498,6 @@ if (searchInput && searchDropdown) {
         });
     }
 
-    // Đóng dropdown khi click ra ngoài
     document.addEventListener('click', function(event) {
         const container = document.querySelector('.search-container');
         if (container && !container.contains(event.target)) {
@@ -499,44 +507,35 @@ if (searchInput && searchDropdown) {
 }
 
 // ==========================================
-// 8. TỰ ĐỘNG CHẠY KHI TẢI TRANG
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartUI();
-    renderProducts();
-    renderDetail();
-    renderCart();
-});
-// ==========================================
-// 9. XỬ LÝ KHỞI TẠO NÚT MESSENGER CHAT ĐỘNG CỐ ĐỊNH
+// 8. XỬ LÝ KHỞI TẠO NÚT MESSENGER CHAT ĐỘNG CỐ ĐỊNH
 // ==========================================
 function initMessengerWidget() {
-    // THAY THẾ 'hoaihehe' THÀNH USERNAME LINK FACEBOOK HOẶC ID FANPAGE CỦA BẠN
-    // Ví dụ: facebook.com/hoaihehe -> điền 'hoaihehe'
-    const FACEBOOK_USERNAME = "hoaihehe"; 
+    // Sử dụng link ID sạch của bạn để kích hoạt trực tiếp giao thức mở app
+    const MESSENGER_URL = "https://www.messenger.com/t/le.huu.hoai.2025"; 
     
-    // Tạo phần tử thẻ <a> động bằng Javascript để không cần sửa từng file HTML thủ công
     const messengerLink = document.createElement('a');
-    messengerLink.href = `https://www.messenger.com/t/le.huu.hoai.2025`;
+    messengerLink.href = MESSENGER_URL;
     messengerLink.target = "_blank";
-    messengerLink.rel = "noopener noreferrer"; // Bảo mật luồng tab tránh chiếm quyền bộ nhớ
+    messengerLink.rel = "noopener noreferrer"; 
     messengerLink.className = "fb-messenger-widget";
     messengerLink.title = "Nhắn tin qua Facebook Messenger";
 
-    // Chèn mã vẽ SVG của biểu tượng Messenger chuẩn nhà phát hành Meta
     messengerLink.innerHTML = `
         <svg viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.14 2 11.25c0 2.91 1.45 5.51 3.71 7.17.19.14.3.37.28.61l-.22 2.18c-.05.5.42.89.88.69l2.45-1.07c.18-.08.38-.07.55.02 1.4.73 2.98 1.15 4.65 1.15 5.52 0 10-4.14 10-9.25C22 6.14 17.52 2 12 2zm1.03 12.31l-2.58-2.75-5.02 2.75 5.51-5.85 2.63 2.75 4.97-2.75-5.51 5.85z"/>
         </svg>
     `;
 
-    // Đẩy nút chat này vào cuối body của trang hiện tại
     document.body.appendChild(messengerLink);
 }
 
-// Chạy khởi tạo Widget ngay khi cấu trúc HTML của trang web được tải xong
+// ==========================================
+// 9. TỰ ĐỘNG CHẠY KHI TẢI TRANG (DUY NHẤT MỘT NƠI)
+// ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // ... các hàm cũ của bạn giữ nguyên ...
-    initMessengerWidget(); 
+    updateCartUI();
+    renderProducts();
+    renderDetail();
+    renderCart();
+    initMessengerWidget(); // Kích hoạt nút chat hoạt động
 });
-const FACEBOOK_USERNAME = "Lê Hữu Hoài";
