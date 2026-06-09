@@ -11,9 +11,15 @@
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="../index.html">
                 <img src="../assets/logo.jpg" alt="Logo" height="40" class="me-2 rounded">
-                TECH-STORE
+                SHORE
             </a>
-            
+            <div class="search-container">
+    <div class="search-box">
+        <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm, linh kiện..." autocomplete="off">
+        <button id="search-btn"><i class="fas fa-search"></i> Tìm</button> 
+    </div>
+    <div id="search-results-dropdown" class="search-dropdown hidden"></div>
+</div>
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="../index.html">Trang chủ</a>
                 <a class="nav-link active" href="san-pham.html">Sản phẩm</a>
@@ -28,10 +34,11 @@
         <h2 class="text-center mb-4">Danh Sách Sản Phẩm</h2>
         <div id="product-list" class="row">
             </div>
+            <div id="pagination-container"></div>
     </main>
 
     <footer class="text-center">
-        <p>&copy; 2026 TechStore. Mọi quyền được bảo lưu.</p>
+        <p>&copy; 2026 SHORE. Mọi quyền được bảo lưu.</p>
     </footer>
     <script src="../js/script.js"></script>
 </body>

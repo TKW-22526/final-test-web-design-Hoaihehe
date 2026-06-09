@@ -6,3 +6,181 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-
 .product-img { object-fit: contain; height: 200px; padding: 20px; }
 #cart-count { background: #ff4757; color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; vertical-align: top; }
 footer { background: #2f3542; color: white; padding: 30px 0; margin-top: 50px; }
+/* Container tổng thể */
+.search-container {
+    position: relative;
+    width: 300px;
+    margin: 10px;
+}
+
+/* Hộp tìm kiếm */
+.search-box {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.search-box input {
+    border: none;
+    padding: 8px 12px;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.search-box button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-box button:hover {
+    background: #0056b3;
+}
+
+/* Dropdown hiển thị kết quả động */
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.search-dropdown.hidden {
+    display: none;
+}
+
+/* Item sản phẩm trong dropdown */
+.search-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.2s;
+}
+
+.search-item:last-child {
+    border-bottom: none;
+}
+
+.search-item:hover {
+    background: #f8f9fa;
+}
+
+.search-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+.search-item .info {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-item .name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.search-item .price {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+/* Thông báo không tìm thấy */
+.no-result {
+    padding: 15px;
+    color: #6c757d;
+    text-align: center;
+    font-size: 14px;
+}
+/* ==========================================
+   WIDGET MESSENGER ĐỘNG (GÓC DƯỚI PHẢI)
+   ========================================== */
+.fb-messenger-widget {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #006AFF, #00C6FF);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 106, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+/* Hiệu ứng phóng to nhẹ và đổi màu khi di chuột vào */
+.fb-messenger-widget:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 6px 20px rgba(0, 106, 255, 0.6);
+}
+
+/* Icon Messenger màu trắng nằm giữa */
+.fb-messenger-widget svg {
+    width: 32px;
+    height: 32px;
+    fill: #ffffff;
+}
+
+/* Vòng sóng xung quanh để tạo sự chú ý khoa học (Pulse Effect) */
+.fb-messenger-widget::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #006AFF;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 0.4;
+    animation: messengerPulse 2s infinite;
+}
+
+@keyframes messengerPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* Tối ưu giao diện trên thiết bị di động nhỏ */
+@media (max-width: 576px) {
+    .fb-messenger-widget {
+        bottom: 15px;
+        right: 15px;
+        width: 52px;
+        height: 52px;
+    }
+    .fb-messenger-widget svg {
+        width: 26px;
+        height: 26px;
+    }
+}
