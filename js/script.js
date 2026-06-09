@@ -507,19 +507,40 @@ if (searchInput && searchDropdown) {
 }
 
 // ==========================================
-// 8. XỬ LÝ KHỞI TẠO NÚT MESSENGER CHAT ĐỘNG CỐ ĐỊNH
+// 8. XỬ LÝ KHỞI TẠO NÚT MESSENGER CHAT ĐỘNG CỐ ĐỊNH (ĐÃ SỬA LỖI ĐIỀU HƯỚNG)
 // ==========================================
 function initMessengerWidget() {
-    // Sử dụng link ID sạch của bạn để kích hoạt trực tiếp giao thức mở app
-    const MESSENGER_URL = "https://www.messenger.com/t/le.huu.hoai.2025"; 
+    // Nhập chính xác Username hoặc ID số Facebook cá nhân của bạn
+    const FB_USERNAME = "le.huu.hoai.2025"; 
     
     const messengerLink = document.createElement('a');
-    messengerLink.href = MESSENGER_URL;
     messengerLink.target = "_blank";
     messengerLink.rel = "noopener noreferrer"; 
     messengerLink.className = "fb-messenger-widget";
     messengerLink.title = "Nhắn tin qua Facebook Messenger";
 
+    // --- LOGIC ĐIỀU HƯỚNG KHOA HỌC CHO TỪNG THIẾT BỊ ---
+    // Kiểm tra xem người dùng có đang dùng Điện thoại/Máy tính bảng (Mobile/Tablet) hay không
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Nếu là điện thoại: Gọi giao thức Deep-link để ép hệ điều hành mở THẲNG app Messenger, bỏ qua trình duyệt web lỗi
+        messengerLink.href = `fb-messenger://user/le.huu.hoai.2025`;
+    } else {
+        // Nếu là máy tính (PC): Sử dụng link m.me gọn nhẹ, tối ưu tốc độ load chat trên trình duyệt máy tính
+        messengerLink.href = `https://m.me/le.huu.hoai.2025`;
+    }
+
+    // Dự phòng (Fallback): Nếu deep-link trên một số dòng máy cũ bị chặn, tự động chuyển về link m.me sau 1 giây
+    messengerLink.addEventListener('click', (e) => {
+        if (isMobile) {
+            setTimeout(() => {
+                window.location.href = `https://m.me/le.huu.hoai.2025`;
+            }, 1000);
+        }
+    });
+
+    // Chèn mã SVG icon Messenger
     messengerLink.innerHTML = `
         <svg viewBox="0 0 24 24">
             <path d="M12 2C6.48 2 2 6.14 2 11.25c0 2.91 1.45 5.51 3.71 7.17.19.14.3.37.28.61l-.22 2.18c-.05.5.42.89.88.69l2.45-1.07c.18-.08.38-.07.55.02 1.4.73 2.98 1.15 4.65 1.15 5.52 0 10-4.14 10-9.25C22 6.14 17.52 2 12 2zm1.03 12.31l-2.58-2.75-5.02 2.75 5.51-5.85 2.63 2.75 4.97-2.75-5.51 5.85z"/>
@@ -528,7 +549,6 @@ function initMessengerWidget() {
 
     document.body.appendChild(messengerLink);
 }
-
 // ==========================================
 // 9. TỰ ĐỘNG CHẠY KHI TẢI TRANG (DUY NHẤT MỘT NƠI)
 // ==========================================
