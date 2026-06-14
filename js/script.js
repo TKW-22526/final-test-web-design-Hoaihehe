@@ -241,35 +241,56 @@ function updateCartUI() {
 // ==========================================
 // 3. XỬ LÝ ĐỔ DỮ LIỆU TRANG DANH SÁCH (san-pham.html)
 // ==========================================
+// ==========================================
+// 3. XỬ LÝ ĐỔ DỮ LIỆU SẢN PHẨM (GIỚI HẠN ĐÚNG 4 SẢN PHẨM TẠI TRANG CHỦ)
+// ==========================================
 function renderProducts() {
     const listEl = document.getElementById('product-list');
-    if (!listEl) return;
-    listEl.innerHTML = productList.map(p => {
-        // Tự động kiểm tra linh kiện (chuột/phím/vga) không có sẵn "Ổ cứng" để tránh hiển thị trống badge bừa bãi
+    if (!listEl) return; // Câu lệnh bảo vệ ngăn chặn lỗi rò rỉ bộ nhớ [cite: 400, 401]
+
+    // Kiểm tra xem có phải đang đứng ở Trang chủ (index.html) hay không
+    const isHomePage = !window.location.pathname.includes('/html/');
+    
+    // Nếu là trang chủ, dùng .slice(0, 4) để chỉ lấy đúng 4 sản phẩm đầu tiên [cite: 407]
+    const displayList = isHomePage ? productList.slice(0, 4) : productList;
+
+    listEl.innerHTML = displayList.map(p => {
+        // Tránh lỗi hiển thị trống badge bừa bãi giữa các danh mục linh kiện khác nhau [cite: 395, 396, 403, 405]
         const extraBadge1 = p.specs["Dung lượng RAM"] || p.specs["Cảm biến"] || p.specs["Switch"] || p.specs["GPU"];
         const extraBadge2 = p.specs["Ổ cứng"] || p.specs["Độ phân giải (DPI)"] || p.specs["Layout"] || p.specs["Bộ nhớ VRAM"];
 
+        // SỬA LỖI ẢNH GÃY: Tự động bóc tách dấu "../" của đường dẫn nếu đang đứng ở trang chủ index.html
+        let displayImg = p.image;
+        if (isHomePage && p.image.startsWith('../')) {
+            displayImg = p.image.replace('../', '');
+        } else if (!isHomePage && !p.image.startsWith('../') && !p.image.startsWith('http')) {
+            displayImg = '../' + p.image;
+        }
+
+        // Định tuyến động bằng URL Query Parameters phù hợp với từng vị trí file [cite: 409, 425]
+        const detailLink = isHomePage ? `html/chi-tiet.html?id=${p.id}` : `chi-tiet.html?id=${p.id}`;
+
         return `
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                <div class="card shadow-sm h-100 border-0 rounded-3 text-center">
-                    <div class="p-3">
-                        <img src="${p.image}" class="card-img-top object-fit-contain" alt="${p.name}" style="height: 180px;">
+                <div class="card shadow-sm h-100 border-0 text-center">
+                    <div class="p-3" style="background: rgba(255, 255, 255, 0.02);">
+                        <img src="${displayImg}" class="card-img-top object-fit-contain" alt="${p.name}" style="height: 180px;" onerror="this.src='https://via.placeholder.com/180?text=Shore+Store'">
                     </div>
-                    <div class="card-body d-flex flex-column border-top pt-3">
-                        <h5 class="card-title fs-6 fw-bold text-dark" style="min-height: 48px;">${p.name}</h5>
-                        <p class="text-danger fw-bold fs-5 mt-2">${p.price.toLocaleString('vi-VN')}đ</p>
+                    <div class="card-body d-flex flex-column pt-3" style="background: var(--cyber-card-bg);">
+                        <h5 class="card-title fs-6 fw-bold text-white" style="min-height: 48px; line-height: 1.4;">${p.name}</h5>
+                        <p class="fw-bold fs-5 mt-2" style="color: var(--neon-pink);">${p.price.toLocaleString('vi-VN')}đ</p>
                         
                         <div class="d-flex justify-content-center gap-2 mb-3 mt-1">
-                            <span class="badge bg-light text-dark border">${extraBadge1}</span>
-                            <span class="badge bg-light text-dark border">${extraBadge2}</span>
+                            <span class="badge bg-dark border border-secondary text-light">${extraBadge1}</span>
+                            <span class="badge bg-dark border border-secondary text-light">${extraBadge2}</span>
                         </div>
 
-                        <a href="chi-tiet.html?id=${p.id}" class="btn btn-outline-primary mt-auto w-100 fw-bold">Chi tiết</a>
+                        <a href="${detailLink}" class="btn btn-cyber mt-auto w-100 fw-bold">Chi tiết</a>
                     </div>
                 </div>
             </div>
         `;
-    }).join('');
+    }).join(''); // Gộp mảng chuỗi thành khối HTML sạch [cite: 398, 406]
 }
 
 // ==========================================

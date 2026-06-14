@@ -2,40 +2,61 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Cửa Hàng Điện Tử Xịn</title>
+    <title>SHORE STORE - Premium Gaming Gear</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+    <nav class="navbar navbar-expand-lg sticky-top py-3">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="index.html">
-                <img src="assets/logo.jpg" alt="Logo" height="40" class="me-2 rounded">
-                SHORE-STORE
+                <img src="assets/logo.jpg" alt="Logo" height="35" class="me-2 rounded-circle">
+                SHORE STORE
             </a>
-            
             <div class="navbar-nav ms-auto">
                 <a class="nav-link active" href="index.html">Trang chủ</a>
                 <a class="nav-link" href="html/san-pham.html">Sản phẩm</a>
                 <a class="nav-link" href="html/gioi-thieu.html">Giới thiệu</a>
                 <a class="nav-link" href="html/lien-he.html">Liên hệ</a>
-                <a class="nav-link text-danger" href="html/gio-hang.html">Giỏ hàng <span id="cart-count">0</span></a>
+                <a class="nav-link text-info fw-bold position-relative ms-2" href="html/gio-hang.html">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span id="cart-count" class="badge rounded-pill bg-danger">0</span>
+                </a>
             </div>
         </div>
     </nav>
 
-    <header class="py-5 bg-dark text-white text-center">
-        <div class="container">
-            <h1 class="display-4 fw-bold">Thế Giới Công Nghệ Trong Tầm Tay</h1>
-            <p class="lead">Cung cấp linh kiện máy tính, Gaming Gear chính hãng giá tốt nhất.</p>
-            <a href="html/san-pham.html" class="btn btn-primary btn-lg mt-3">Mua Sắm Ngay</a>
+    <header class="hero-cyber-banner py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-7 text-start">
+                    <span class="badge bg-dark border border-info text-info px-3 py-2 text-uppercase mb-3">Est. 2026 | Experience The Battle</span>
+                    <h1 class="display-3 neon-text mb-3">SHORE <span style="color: var(--neon-pink)">GAMING GEAR</span></h1>
+                    <p class="fs-5 text-muted mb-4">Hệ thống phân phối thiết bị ngoại vi, linh kiện phần cứng High-End chính hãng. Kiến tạo không gian chiến game đỉnh cao của bạn.</p>
+                    <a href="html/san-pham.html" class="btn btn-cyber btn-lg text-uppercase fw-bold">Khám Phá Ngay</a>
+                </div>
+            </div>
         </div>
     </header>
 
-    <footer class="text-center">
-        <p>&copy; 110124067.</p>
-    </footer>
+    <main class="container mt-5 py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-uppercase border-start border-4 border-info ps-3 mb-0" style="letter-spacing: 1px;">
+            Sản Phẩm Bán Chạy
+        </h2>
+        <a href="html/san-pham.html" class="btn btn-outline-info rounded-pill px-4 fw-bold">
+            Xem Tất Cả <i class="fa fa-arrow-right ms-2"></i>
+        </a>
+    </div>
     
+    <div id="product-list" class="row g-4"></div>
+</main>
+
+    <footer class="text-center py-4 mt-5 border-top border-secondary" style="background: #111625;">
+        <p class="mb-0 text-muted">&copy; 2026 SHORE STORE - Đại học Trà Vinh.</p>
+    </footer>
+
     <script src="js/script.js"></script>
 </body>
 </html>

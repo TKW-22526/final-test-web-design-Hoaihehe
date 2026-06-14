@@ -1,186 +1,284 @@
-:root { --primary-color: #007bff; }
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; }
-.nav-link:hover { color: var(--primary-color) !important; }
-.card { transition: transform 0.3s; border: none; }
-.card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important; }
-.product-img { object-fit: contain; height: 200px; padding: 20px; }
-#cart-count { background: #ff4757; color: white; padding: 2px 6px; border-radius: 50%; font-size: 12px; vertical-align: top; }
-footer { background: #2f3542; color: white; padding: 30px 0; margin-top: 50px; }
-/* Container tổng thể */
-.search-container {
+/* ==========================================
+   SHORE STORE - CYBERPUNK PREMIUM THEME
+   ========================================== */
+:root {
+    --cyber-bg: #0a0d16;
+    --cyber-card-bg: #111625;
+    --neon-blue: #00f0ff;
+    --neon-pink: #ff007f;
+    --neon-green: #39ff14;
+    --text-main: #ffffff;
+    --text-muted: #8fa0dd;
+}
+
+body {
+    background-color: var(--cyber-bg) !important;
+    color: var(--text-main) !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Thanh điều hướng Hi-tech dạng kính mờ */
+.navbar {
+    background: rgba(17, 22, 37, 0.85) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(0, 240, 255, 0.2);
+}
+
+.navbar-brand {
+    color: #fff !important;
+    letter-spacing: 1px;
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--neon-blue) !important;
+    text-shadow: 0 0 8px var(--neon-blue);
+}
+
+/* Hiệu ứng chữ phát sáng LED Neon Shore Store */
+.neon-text {
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+/* Banner chính trang chủ */
+.hero-cyber-banner {
     position: relative;
-    width: 300px;
-    margin: 10px;
+    min-height: 70vh;
+    background: linear-gradient(rgba(10, 13, 22, 0.8), rgba(10, 13, 22, 0.95)), url('../assets/images/hero-bg.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 0, 127, 0.2);
+}
+
+/* Nút bấm thiết bị Gaming phát sáng */
+.btn-cyber {
+    background: linear-gradient(135deg, #0055ff, var(--neon-blue));
+    color: #fff !important;
+    border: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 10px 25px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.btn-cyber:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--neon-blue);
 }
 
 /* Hộp tìm kiếm */
+.search-container {
+    position: relative;
+    max-width: 450px;
+}
+
 .search-box {
     display: flex;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 20px;
     overflow: hidden;
-    background: #fff;
 }
 
 .search-box input {
+    background: transparent;
     border: none;
-    padding: 8px 12px;
-    outline: none;
+    color: #fff;
+    padding: 8px 15px;
     width: 100%;
-    font-size: 14px;
+}
+
+.search-box input::placeholder {
+    color: #53628a;
 }
 
 .search-box button {
-    background: #007bff;
-    color: white;
+    background: transparent;
     border: none;
+    color: var(--neon-blue);
     padding: 0 15px;
-    cursor: pointer;
-    transition: background 0.2s;
 }
 
-.search-box button:hover {
-    background: #0056b3;
+/* Card thiết kế dạng trạm không gian chuyên nghiệp */
+.card {
+    background-color: var(--cyber-card-bg) !important;
+    border: 1px solid rgba(143, 160, 221, 0.1) !important;
+    border-radius: 8px !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Dropdown hiển thị kết quả động */
-.search-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 1px solid #ddd;
-    border-top: none;
-    border-radius: 0 0 4px 4px;
-    max-height: 300px;
-    overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 1000;
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--neon-blue) !important;
+    box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15) !important;
 }
 
-.search-dropdown.hidden {
-    display: none;
+.card-title {
+    color: #fff !important;
 }
 
-/* Item sản phẩm trong dropdown */
-.search-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    text-decoration: none;
-    color: #333;
-    transition: background 0.2s;
+.text-muted {
+    color: var(--text-muted) !important;
 }
 
-.search-item:last-child {
-    border-bottom: none;
+/* Định dạng giỏ hàng & form liên hệ */
+.table {
+    color: var(--text-main) !important;
 }
 
-.search-item:hover {
-    background: #f8f9fa;
+.form-control, .form-select {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(143, 160, 221, 0.2) !important;
+    color: #fff !important;
 }
 
-.search-item img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    margin-right: 10px;
-    border-radius: 4px;
+.form-control:focus, .form-select:focus {
+    border-color: var(--neon-blue) !important;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3) !important;
 }
 
-.search-item .info {
-    display: flex;
-    flex-direction: column;
-}
-
-.search-item .name {
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.search-item .price {
-    color: #dc3545;
-    font-size: 12px;
-    margin-top: 2px;
-}
-
-/* Thông báo không tìm thấy */
-.no-result {
-    padding: 15px;
-    color: #6c757d;
-    text-align: center;
-    font-size: 14px;
-}
-/* ==========================================
-   WIDGET MESSENGER ĐỘNG (GÓC DƯỚI PHẢI)
-   ========================================== */
+/* Widget Bong Bóng Chat Messenger */
 .fb-messenger-widget {
     position: fixed;
     bottom: 25px;
     right: 25px;
     z-index: 9999;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #006AFF, var(--neon-blue));
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #006AFF, #00C6FF);
-    border-radius: 50%;
     box-shadow: 0 4px 15px rgba(0, 106, 255, 0.4);
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-/* Hiệu ứng phóng to nhẹ và đổi màu khi di chuột vào */
 .fb-messenger-widget:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 6px 20px rgba(0, 106, 255, 0.6);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--neon-blue);
+}
+/* ==========================================
+   FIX LỖI THANH TÌM KIẾM TRÊN GIAO DIỆN DARKMODE
+   ========================================== */
+.search-container {
+    position: relative;
+    z-index: 1050; /* Đảm bảo nổi lên trên các thành phần khác */
 }
 
-/* Icon Messenger màu trắng nằm giữa */
-.fb-messenger-widget svg {
-    width: 32px;
-    height: 32px;
-    fill: #ffffff;
+/* Thanh chứa ô Input bao ngoài */
+.search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(0, 240, 255, 0.4) !important;
+    border-radius: 6px !important;
+    padding: 2px 10px;
+    transition: all 0.3s ease;
 }
 
-/* Vòng sóng xung quanh để tạo sự chú ý khoa học (Pulse Effect) */
-.fb-messenger-widget::before {
-    content: "";
-    position: absolute;
+.search-box:focus-within {
+    border-color: var(--neon-blue) !important;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+}
+
+/* Định dạng chữ gõ vào ô Input - Bắt buộc phải là màu trắng */
+.search-box input {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important; /* Đổi thành chữ trắng để nhìn rõ trên nền tối */
+    outline: none !important;
+    padding: 6px 10px;
     width: 100%;
-    height: 100%;
-    background-color: #006AFF;
-    border-radius: 50%;
-    z-index: -1;
-    opacity: 0.4;
-    animation: messengerPulse 2s infinite;
+    font-size: 14px;
 }
 
-@keyframes messengerPulse {
-    0% {
-        transform: scale(1);
-        opacity: 0.4;
-    }
-    100% {
-        transform: scale(1.4);
-        opacity: 0;
-    }
+.search-box input::placeholder {
+    color: #6b7c96 !important; /* Màu chữ gợi ý dịu mắt */
 }
 
-/* Tối ưu giao diện trên thiết bị di động nhỏ */
-@media (max-width: 576px) {
-    .fb-messenger-widget {
-        bottom: 15px;
-        right: 15px;
-        width: 52px;
-        height: 52px;
-    }
-    .fb-messenger-widget svg {
-        width: 26px;
-        height: 26px;
-    }
+/* Nút bấm kính lúp */
+.search-box button {
+    background: transparent !important;
+    border: none !important;
+    color: var(--neon-blue) !important;
+    cursor: pointer;
+    font-size: 15px;
+    transition: transform 0.2s ease;
+}
+
+.search-box button:hover {
+    transform: scale(1.1);
+}
+
+/* KHU VỰC HIỂN THỊ KẾT QUẢ DROPDOWN (Khi gõ tìm kiếm) */
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #121826 !important; /* Nền tối đồng bộ hộp không gian */
+    border: 1px solid rgba(0, 240, 255, 0.3) !important;
+    border-top: none !important;
+    border-radius: 0 0 8px 8px;
+    max-height: 320px;
+    overflow-y: auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    z-index: 9999 !important;
+}
+
+/* Các hàng kết quả tìm kiếm hiển thị bên trong dropdown */
+.search-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-decoration: none !important;
+}
+
+.search-item:hover {
+    background-color: rgba(0, 240, 255, 0.1) !important;
+}
+
+.search-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.search-item .item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-item .item-name {
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.search-item .item-price {
+    color: var(--neon-pink) !important;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* Ẩn dropdown đi khi không có từ khóa */
+.hidden {
+    display: none !important;
 }
