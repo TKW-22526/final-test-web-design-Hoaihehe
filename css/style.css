@@ -1,14 +1,14 @@
 /* ==========================================
-   SHORE STORE - CYBERPUNK PREMIUM THEME
+   SHORE STORE - MODERN LIGHT THEME
    ========================================== */
 :root {
-    --cyber-bg: #0a0d16;
-    --cyber-card-bg: #111625;
-    --neon-blue: #00f0ff;
-    --neon-pink: #ff007f;
-    --neon-green: #39ff14;
-    --text-main: #ffffff;
-    --text-muted: #8fa0dd;
+    --cyber-bg: #ffffff;            /* Nền chính trắng tinh khiết */
+    --cyber-card-bg: #f8f9fa;       /* Nền card và khối phụ màu xám nhạt nhẹ nhàng */
+    --neon-blue: #0076df;           /* Màu xanh dương đậm chuẩn công nghệ, dễ nhìn trên nền trắng */
+    --neon-pink: #d90429;           /* Màu đỏ tươi nổi bật cho giá tiền và nút nhấn */
+    --text-main: #212529;           /* Màu chữ chính xám đen (chuẩn Bootstrap) giúp đọc rõ nét */
+    --text-muted: #6c757d;          /* Màu chữ phụ xám mờ */
+    --border-color: #e9ecef;        /* Màu đường viền mảnh tinh tế */
 }
 
 body {
@@ -17,16 +17,17 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Thanh điều hướng Hi-tech dạng kính mờ */
+/* Thanh điều hướng dạng kính mờ trên nền sáng */
 .navbar {
-    background: rgba(17, 22, 37, 0.85) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(10px);
-    border-bottom: 2px solid rgba(0, 240, 255, 0.2);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .navbar-brand {
-    color: #fff !important;
-    letter-spacing: 1px;
+    color: var(--text-main) !important;
+    letter-spacing: 0.5px;
 }
 
 .nav-link {
@@ -37,29 +38,27 @@ body {
 
 .nav-link:hover, .nav-link.active {
     color: var(--neon-blue) !important;
-    text-shadow: 0 0 8px var(--neon-blue);
 }
 
-/* Hiệu ứng chữ phát sáng LED Neon Shore Store */
+/* Tiêu đề chính */
 .neon-text {
     font-weight: 900;
     text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
+    color: var(--text-main);
+    text-shadow: none !important; /* Loại bỏ hiệu ứng phát sáng tối */
 }
 
-/* Banner chính trang chủ */
+/* Banner chính trang chủ - Điều chỉnh độ tương phản sáng */
 .hero-cyber-banner {
     position: relative;
-    min-height: 70vh;
-    /* Ép màu nền tối var(--cyber-bg) làm gốc, bọc lót lớp phủ đen 85% trước khi gọi ảnh */
-    background: linear-gradient(rgba(10, 13, 22, 0.85), rgba(10, 13, 22, 0.95)), #0a0d16 url('../assets/images/hero-bg.jpg') center/cover no-repeat;
+    min-height: 50vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.95)), #ffffff url('../assets/images/hero-bg.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgba(255, 0, 127, 0.2);
+    border-bottom: 1px solid var(--border-color);
 }
 
-/* Nút bấm thiết bị Gaming phát sáng */
+/* Nút bấm hành động màu sắc nổi bật */
 .btn-cyber {
     background: linear-gradient(135deg, #0055ff, var(--neon-blue));
     color: #fff !important;
@@ -73,10 +72,10 @@ body {
 
 .btn-cyber:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 15px var(--neon-blue);
+    box-shadow: 0 4px 12px rgba(0, 118, 223, 0.3);
 }
 
-/* Hộp tìm kiếm */
+/* Hộp tìm kiếm tinh tế */
 .search-container {
     position: relative;
     max-width: 450px;
@@ -84,47 +83,112 @@ body {
 
 .search-box {
     display: flex;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    border-radius: 20px;
-    overflow: hidden;
+    align-items: center;
+    background: #f1f3f5 !important;
+    border: 1px solid #ced4da !important;
+    border-radius: 6px !important;
+    padding: 2px 10px;
+    transition: all 0.3s ease;
+}
+
+.search-box:focus-within {
+    border-color: var(--neon-blue) !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 8px rgba(0, 118, 223, 0.2);
 }
 
 .search-box input {
-    background: transparent;
-    border: none;
-    color: #fff;
-    padding: 8px 15px;
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-main) !important; /* Chuyển chữ gõ sang màu tối */
+    outline: none !important;
+    padding: 6px 10px;
     width: 100%;
+    font-size: 14px;
 }
 
 .search-box input::placeholder {
-    color: #53628a;
+    color: #adb5bd !important;
 }
 
 .search-box button {
-    background: transparent;
-    border: none;
-    color: var(--neon-blue);
-    padding: 0 15px;
+    background: transparent !important;
+    border: none !important;
+    color: var(--neon-blue) !important;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-/* Card thiết kế dạng trạm không gian chuyên nghiệp */
+/* Khu vực kết quả Dropdown khi tìm kiếm */
+.search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    border-top: none !important;
+    border-radius: 0 0 8px 8px;
+    max-height: 320px;
+    overflow-y: auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    z-index: 9999 !important;
+}
+
+.search-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #f1f3f5;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-decoration: none !important;
+}
+
+.search-item:hover {
+    background-color: #f8f9fa !important;
+}
+
+.search-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 12px;
+    background: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.search-item .name, .search-item .item-name {
+    color: var(--text-main) !important;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.search-item .price, .search-item .item-price {
+    color: var(--neon-pink) !important;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+/* Card sản phẩm thiết kế tối giản, hiện đại */
 .card {
     background-color: var(--cyber-card-bg) !important;
-    border: 1px solid rgba(143, 160, 221, 0.1) !important;
+    border: 1px solid var(--border-color) !important;
     border-radius: 8px !important;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.3s ease;
 }
 
 .card:hover {
     transform: translateY(-5px);
+    background-color: #ffffff !important;
     border-color: var(--neon-blue) !important;
-    box-shadow: 0 10px 25px rgba(0, 240, 255, 0.15) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
 .card-title {
-    color: #fff !important;
+    color: var(--text-main) !important;
 }
 
 .text-muted {
@@ -134,17 +198,18 @@ body {
 /* Định dạng giỏ hàng & form liên hệ */
 .table {
     color: var(--text-main) !important;
+    background-color: #ffffff !important;
 }
 
 .form-control, .form-select {
-    background-color: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(143, 160, 221, 0.2) !important;
-    color: #fff !important;
+    background-color: #ffffff !important;
+    border: 1px solid #ced4da !important;
+    color: var(--text-main) !important;
 }
 
 .form-control:focus, .form-select:focus {
     border-color: var(--neon-blue) !important;
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.3) !important;
+    box-shadow: 0 0 8px rgba(0, 118, 223, 0.2) !important;
 }
 
 /* Widget Bong Bóng Chat Messenger */
@@ -155,221 +220,81 @@ body {
     z-index: 9999;
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #006AFF, var(--neon-blue));
+    background: linear-gradient(135deg, #006AFF, #00b2fe);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(0, 106, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 106, 255, 0.3);
     transition: all 0.3s ease;
 }
 
 .fb-messenger-widget:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 20px var(--neon-blue);
-}
-/* ==========================================
-   FIX LỖI THANH TÌM KIẾM TRÊN GIAO DIỆN DARKMODE
-   ========================================== */
-.search-container {
-    position: relative;
-    z-index: 1050; /* Đảm bảo nổi lên trên các thành phần khác */
+    box-shadow: 0 4px 20px rgba(0, 106, 255, 0.5);
 }
 
-/* Thanh chứa ô Input bao ngoài */
-.search-box {
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.07) !important;
-    border: 1px solid rgba(0, 240, 255, 0.4) !important;
-    border-radius: 6px !important;
-    padding: 2px 10px;
-    transition: all 0.3s ease;
+.fb-messenger-widget svg {
+    width: 28px;
+    height: 28px;
+    fill: #ffffff;
 }
 
-.search-box:focus-within {
-    border-color: var(--neon-blue) !important;
-    box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
-}
-
-/* Định dạng chữ gõ vào ô Input - Bắt buộc phải là màu trắng */
-.search-box input {
-    background: transparent !important;
-    border: none !important;
-    color: #ffffff !important; /* Đổi thành chữ trắng để nhìn rõ trên nền tối */
-    outline: none !important;
-    padding: 6px 10px;
-    width: 100%;
-    font-size: 14px;
-}
-
-.search-box input::placeholder {
-    color: #6b7c96 !important; /* Màu chữ gợi ý dịu mắt */
-}
-
-/* Nút bấm kính lúp */
-.search-box button {
-    background: transparent !important;
-    border: none !important;
-    color: var(--neon-blue) !important;
-    cursor: pointer;
-    font-size: 15px;
-    transition: transform 0.2s ease;
-}
-
-.search-box button:hover {
-    transform: scale(1.1);
-}
-
-/* KHU VỰC HIỂN THỊ KẾT QUẢ DROPDOWN (Khi gõ tìm kiếm) */
-.search-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #121826 !important; /* Nền tối đồng bộ hộp không gian */
-    border: 1px solid rgba(0, 240, 255, 0.3) !important;
-    border-top: none !important;
-    border-radius: 0 0 8px 8px;
-    max-height: 320px;
-    overflow-y: auto;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-    z-index: 9999 !important;
-}
-
-/* Các hàng kết quả tìm kiếm hiển thị bên trong dropdown */
-.search-item {
-    display: flex;
-    align-items: center;
-    padding: 10px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    cursor: pointer;
-    transition: background 0.2s ease;
-    text-decoration: none !important;
-}
-
-.search-item:hover {
-    background-color: rgba(0, 240, 255, 0.1) !important;
-}
-
-.search-item img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    margin-right: 12px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 4px;
-}
-
-.search-item .item-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.search-item .item-name {
-    color: #ffffff !important;
-    font-size: 13px;
-    font-weight: 500;
-}
-
-.search-item .item-price {
-    color: var(--neon-pink) !important;
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 2px;
-}
-
-/* Ẩn dropdown đi khi không có từ khóa */
 .hidden {
     display: none !important;
 }
-/* ==========================================
-   ĐỒNG BỘ TOÀN BỘ SANG MÀU XANH NEON HI-TECH
-   ========================================== */
 
-/* 1. Ép tên sản phẩm ở trang chi tiết sang màu XANH CYAN PHÁT SÁNG */
+/* ==========================================
+   ĐỒNG BỘ MÀU CHỮ TIÊU ĐỀ VÀ BẢNG THÔNG SỐ
+   ========================================== */
 main h1, 
 main h2, 
 #product-detail h2,
 #product-detail h1 {
-    color: var(--neon-blue) !important; /* Biến chữ Laptop ASUS Gaming Vivobook... thành màu xanh */
-    text-shadow: 0 0 12px rgba(0, 240, 255, 0.6); /* Hiệu ứng tỏa sáng LED Neon */
-    font-weight: bold;
-    text-transform: uppercase;
+    color: var(--neon-blue) !important; 
+    text-shadow: none !important;
+    font-weight: 700;
 }
 
-/* 2. Ép tiêu đề nhỏ "Thông số kỹ thuật" sang màu xanh đồng bộ */
 main h3, 
 .container h3 {
-    color: var(--neon-blue) !important;
-    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+    color: var(--text-main) !important;
+    text-shadow: none !important;
 }
 
-/* 3. Khung bao ngoài của bảng thông số kỹ thuật */
+/* Cấu trúc bảng thông số kỹ thuật sáng sủa */
 .table-bordered {
-    background-color: var(--cyber-card-bg) !important; /* Nền tối trạm không gian #111625 */
-    border: 2px solid rgba(0, 240, 255, 0.3) !important; /* Viền bảng màu xanh */
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
-    overflow: hidden;
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+    box-shadow: none;
 }
 
-/* 4. Định dạng tất cả các ô bên trong bảng */
 .table-bordered tbody tr td {
-    border: 1px solid rgba(0, 240, 255, 0.2) !important; /* Đường kẻ ô màu xanh dịu */
+    border: 1px solid #dee2e6 !important;
     padding: 14px 18px !important;
-    vertical-align: middle;
 }
 
-/* CỘT TRÁI: Các nhãn thông số (CPU, RAM, Ổ cứng, Card đồ họa...) */
+/* Cột thông số bên trái */
 .table-bordered tbody tr td:first-child {
-    background-color: rgba(0, 240, 255, 0.04) !important; /* Phủ một lớp nền xanh cực nhẹ */
-    color: var(--neon-blue) !important; /* Chữ cột trái màu xanh Cyan đậm chất công nghệ */
-    font-weight: 700;
-    width: 30%; /* Định hình tỉ lệ khung hình học chuẩn */
+    background-color: #f8f9fa !important; 
+    color: var(--text-main) !important;
+    font-weight: 600;
+    width: 30%;
 }
 
-/* CỘT PHẢI: Nội dung chi tiết phần cứng (Intel Core i5, RTX 3050...) */
+/* Cột giá trị bên phải */
 .table-bordered tbody tr td:last-child {
-    background-color: transparent !important;
-    color: #ffffff !important; /* Giữ chữ thông số màu trắng tinh khiết để đọc rõ nét nhất */
-    font-weight: 500;
+    background-color: #ffffff !important;
+    color: #495057 !important;
 }
+
 /* ==========================================
-   CẤU HÌNH GIÁ TIỀN MÀU ĐỎ NEON PHÁT SÁNG
+   ĐỊNH DẠNG GIÁ TIỀN NỔI BẬT
    ========================================== */
-
-/* 1. Giá tiền tại trang chi tiết sản phẩm (chi-tiet.html) */
-#product-detail h2,
-#product-detail .text-danger {
-    color: var(--neon-pink) !important; /* Sử dụng màu đỏ hồng neon #ff007f đã định nghĩa */
-    font-size: 2rem !important;
-    font-weight: 800 !important;
-    text-shadow: 0 0 10px rgba(255, 0, 127, 0.6), 
-                 0 0 20px rgba(255, 0, 127, 0.3) !important; /* Hiệu ứng tỏa sáng LED đỏ */
-    margin: 15px 0;
-}
-
-/* 2. Giá tiền tại các Card sản phẩm ở trang chủ và trang danh sách */
-.card-body p.text-danger,
-.card-body .text-danger {
+#product-detail .text-danger,
+.card-body p.style\,
+.card-body p[style*="color: var(--neon-pink)"],
+#cart-content .text-danger {
     color: var(--neon-pink) !important;
-    font-weight: 800 !important;
-    font-size: 1.25rem !important;
-    text-shadow: 0 0 8px rgba(255, 0, 127, 0.5) !important;
-}
-
-/* 3. Giá tiền hiển thị trong Menu thả tìm kiếm nhanh (Live Search Dropdown) */
-.search-item .item-price,
-.search-dropdown .price {
-    color: var(--neon-pink) !important;
-    font-weight: bold !important;
-    text-shadow: 0 0 5px rgba(255, 0, 127, 0.5) !important;
-}
-
-/* 4. Tổng tiền thanh toán trong bảng Giỏ hàng (gio-hang.html) */
-#cart-content .text-danger,
-#cart-content fs-3 {
-    color: var(--neon-pink) !important;
-    font-weight: 900 !important;
-    text-shadow: 0 0 12px rgba(255, 0, 127, 0.6) !important;
+    text-shadow: none !important;
 }
