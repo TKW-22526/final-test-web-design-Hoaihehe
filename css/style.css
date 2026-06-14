@@ -283,3 +283,93 @@ body {
 .hidden {
     display: none !important;
 }
+/* ==========================================
+   ĐỒNG BỘ TOÀN BỘ SANG MÀU XANH NEON HI-TECH
+   ========================================== */
+
+/* 1. Ép tên sản phẩm ở trang chi tiết sang màu XANH CYAN PHÁT SÁNG */
+main h1, 
+main h2, 
+#product-detail h2,
+#product-detail h1 {
+    color: var(--neon-blue) !important; /* Biến chữ Laptop ASUS Gaming Vivobook... thành màu xanh */
+    text-shadow: 0 0 12px rgba(0, 240, 255, 0.6); /* Hiệu ứng tỏa sáng LED Neon */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* 2. Ép tiêu đề nhỏ "Thông số kỹ thuật" sang màu xanh đồng bộ */
+main h3, 
+.container h3 {
+    color: var(--neon-blue) !important;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+}
+
+/* 3. Khung bao ngoài của bảng thông số kỹ thuật */
+.table-bordered {
+    background-color: var(--cyber-card-bg) !important; /* Nền tối trạm không gian #111625 */
+    border: 2px solid rgba(0, 240, 255, 0.3) !important; /* Viền bảng màu xanh */
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+    overflow: hidden;
+}
+
+/* 4. Định dạng tất cả các ô bên trong bảng */
+.table-bordered tbody tr td {
+    border: 1px solid rgba(0, 240, 255, 0.2) !important; /* Đường kẻ ô màu xanh dịu */
+    padding: 14px 18px !important;
+    vertical-align: middle;
+}
+
+/* CỘT TRÁI: Các nhãn thông số (CPU, RAM, Ổ cứng, Card đồ họa...) */
+.table-bordered tbody tr td:first-child {
+    background-color: rgba(0, 240, 255, 0.04) !important; /* Phủ một lớp nền xanh cực nhẹ */
+    color: var(--neon-blue) !important; /* Chữ cột trái màu xanh Cyan đậm chất công nghệ */
+    font-weight: 700;
+    width: 30%; /* Định hình tỉ lệ khung hình học chuẩn */
+}
+
+/* CỘT PHẢI: Nội dung chi tiết phần cứng (Intel Core i5, RTX 3050...) */
+.table-bordered tbody tr td:last-child {
+    background-color: transparent !important;
+    color: #ffffff !important; /* Giữ chữ thông số màu trắng tinh khiết để đọc rõ nét nhất */
+    font-weight: 500;
+}
+/* ==========================================
+   CẤU HÌNH GIÁ TIỀN MÀU ĐỎ NEON PHÁT SÁNG
+   ========================================== */
+
+/* 1. Giá tiền tại trang chi tiết sản phẩm (chi-tiet.html) */
+#product-detail h2,
+#product-detail .text-danger {
+    color: var(--neon-pink) !important; /* Sử dụng màu đỏ hồng neon #ff007f đã định nghĩa */
+    font-size: 2rem !important;
+    font-weight: 800 !important;
+    text-shadow: 0 0 10px rgba(255, 0, 127, 0.6), 
+                 0 0 20px rgba(255, 0, 127, 0.3) !important; /* Hiệu ứng tỏa sáng LED đỏ */
+    margin: 15px 0;
+}
+
+/* 2. Giá tiền tại các Card sản phẩm ở trang chủ và trang danh sách */
+.card-body p.text-danger,
+.card-body .text-danger {
+    color: var(--neon-pink) !important;
+    font-weight: 800 !important;
+    font-size: 1.25rem !important;
+    text-shadow: 0 0 8px rgba(255, 0, 127, 0.5) !important;
+}
+
+/* 3. Giá tiền hiển thị trong Menu thả tìm kiếm nhanh (Live Search Dropdown) */
+.search-item .item-price,
+.search-dropdown .price {
+    color: var(--neon-pink) !important;
+    font-weight: bold !important;
+    text-shadow: 0 0 5px rgba(255, 0, 127, 0.5) !important;
+}
+
+/* 4. Tổng tiền thanh toán trong bảng Giỏ hàng (gio-hang.html) */
+#cart-content .text-danger,
+#cart-content fs-3 {
+    color: var(--neon-pink) !important;
+    font-weight: 900 !important;
+    text-shadow: 0 0 12px rgba(255, 0, 127, 0.6) !important;
+}
